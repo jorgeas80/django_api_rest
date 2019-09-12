@@ -34,16 +34,10 @@ class Product(Timestampable, Publishable, Permalinkable, Showable, Activable):
     price = models.DecimalField(default=0.0, max_digits=10, decimal_places=2)
 
     def __str__(self):
-        return '{} - {} ({}){}'.format(
+        return '{} - {} ({}) - {} - Actualizado en {}{}'.format(
             self.name, 
             self.description,
             'activo' if self.active else 'inactivo',
-            ' - Publicado en {}.'.format(self.publish_date) if self.publish_date else '.')
-
-    def __str__(self):
-        return '{} ({}) - {}. Actualizado en {}{}'.format(
-            self.name,
-            self.description,
             self.slug if self.slug else 'Sin url',
             self.modified_date,
             ' - Publicado en {}.'.format(self.publish_date) if self.publish_date else '.')
