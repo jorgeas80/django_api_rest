@@ -27,3 +27,9 @@ Una vez en la base de datos::
     create database drf_api;
     create user "jorge" with password 'jorge';
     grant all privileges on database "drf_api" to "jorge";
+
+
+Para volcar los datos una vez corrida la migración de datos::
+
+    python manage.py dumpdata --indent 2 dj_puro.Category > dj_puro/fixtures/categories.json
+    python manage.py dumpdata --indent 2 dj_puro.SubCategory > dj_puro/fixtures/subcategories.json
