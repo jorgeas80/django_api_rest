@@ -41,3 +41,7 @@ class Product(Timestampable, Publishable, Permalinkable, Showable, Activable):
             self.slug if self.slug else 'Sin url',
             self.modified_date,
             ' - Publicado en {}.'.format(self.publish_date) if self.publish_date else '.')
+
+    class Meta:
+        verbose_name = 'Producto'
+        verbose_name_plural = 'Productos'
