@@ -7,17 +7,54 @@ Repositorio para curso de creación de API REST con Django. Este fichero contien
 =========================
 Configuración del entorno
 =========================
-En Linux, para instalar psycopg2, antes hay que ejecutar esto::
 
-    sudo apt install python3-dev postgresql-server-dev-all
+Necesitaremos instalar en nuestra máquina:
 
-La alternativa, es instalar psycopg2-binary en vez de psycopg2
+* `Python 3 <https://www.python.org/>`_.
+* `PostgreSQL <https://www.postgresql.org>`_.
+* `VSCode <https://code.visualstudio.com/>`_.
+* `Cliente GIT <https://git-scm.com/downloads>`_.
+* `Emulador de consola CMDer (opcional, solo Windows) <https://cmder.net/>`_.
+
+Una vez instalado, crearemos manualmente un directorio de trabajo en nuestra máquina. A partir de ahora, todas las operaciones las haremos desde dentro de ese directorio.
+
+
+----------------------------
+Creación de entorno virtual
+----------------------------
+
+
+A continuación, crearemos un entorno virtual desde una línea de comandos, ejecutando lo siguiente [#]_::
+
+    python -m venv venv
+
+Siendo el segundo *venv* el nombre del entorno virtual. Se puede usar el nombre que se quiera.
+
+Activamos el entorno virtual ejecutando lo siguiente **desde sistemas Windows**::
+
+    venv\Scripts\activate.bat
+
+O lo siguiente **desde sistemas Linux/Mac**::
+
+    source venv/bin/activate
+
+----------------------------------
+Instalación de software necesario
+----------------------------------
+
+Ahora instalaremos los paquetes de Python necesarios para poder comenzar a trabajar en un proyecto Django. Para ello, ejecutamos lo siguiente [#]_::
+
+    pip install Django djangorestframework psycopg2
+
+Adicionalmente, se puede instalar `PGAdmin 3 <https://www.pgadmin.org/>`_, un popular gestor gráfico para la base de datos PostgreSQL.
 
 ==============
 Base de datos
 ==============
 
-La configuración de base de datos para que funcione con lo subido al repo sería así (en Linux)::
+Vamos a crear una base de datos para el proyecto y un usuario con permisos para dicha base de datos. Se puede hacer visualmente con PGAdmin o mediante el cliente psql.
+
+Si se hace mediante el cliente de consola psql, debemos hacer lo siguiente (en Linux)::
 
     sudo su - postgres
     psql
@@ -28,8 +65,31 @@ Una vez en la base de datos::
     create user "jorge" with password 'jorge';
     grant all privileges on database "drf_api" to "jorge";
 
+Hecho estto, estaríamos listos para iniciar un proyecto de Django.
 
-Para volcar los datos una vez corrida la migración de datos::
 
-    python manage.py dumpdata --indent 2 dj_puro.Category > dj_puro/fixtures/categories.json
-    python manage.py dumpdata --indent 2 dj_puro.SubCategory > dj_puro/fixtures/subcategories.json
+============================
+Creación de proyecto Django
+============================
+
+Desde línea de comandos, ejecutamos::
+
+    django-admin.py startproject djapi
+
+Eso creará el esqueleto del proyecto dentro del subdirectorio *djapi*. Es un buen momento para guardar el trabajo en un repositorio.
+
+-----------------------------------------------
+Almacenamiento del proyecto en repositorio git
+-----------------------------------------------
+
+Vamos a crear un repositorio vacío y guardar lo creado hasta ahora::
+
+    git init
+    git add -A
+    git commit -am "Initial commit"
+
+Si estamos usando Github o similar, podemos hacer también *git push* para sincronizarnos con el repositorio central.
+
+
+.. [#] Si en la máquina está instalado también Python 2, el ejecutable a lanzar será python3
+.. [#] En Linux, para instalar psycopg2, antes hay que ejecutar  `sudo apt install python3-dev postgresql-server-dev-all`
