@@ -1,4 +1,5 @@
 from django.db import models
+from django.http import JsonResponse
 
 # Create your models here.
 class Permalinkable(models.Model):
@@ -35,4 +36,4 @@ class Showable(models.Model):
     description = models.TextField()
 
     class Meta:
-        abstract = True 
+        abstract = True

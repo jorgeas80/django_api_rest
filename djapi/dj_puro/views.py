@@ -1,42 +1,37 @@
-from django.shortcuts import render
-from django.utils import timezone
-from django.views.generic import ListView, DetailView
-
-from .models import Category, SubCategory, Product
-
-# Create your views here.
-class CategoryListView(ListView):
-    model = Category
+from django.core.serializers import serialize
+from django.shortcuts import get_object_or_404
+from django.http import JsonResponse, HttpResponse
+from .models import Category
 
 
-class SubCategoryListView(ListView):
-    model = SubCategory
+def category_list(request):
+    # We may need a filter...
+    #data = serialize('json', Category.objects.all())
+    data = serialize('json', Category.objects.all(), fields=('name', 'description'))
+
+    return HttpResponse(data, content_type='application/json')
 
 
-class ProductListView(ListView):
-    model = Product
-    paginate_by = 20
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['now'] = timezone.now()
-        return context
+def category_list_2(request):
+    # We may need a filter...
+    data = list(Category.objects.values('active', 'name', 'description'))
+    return JsonResponse(data, safe=False)
 
 
-class CategoryDetailView(DetailView):
-    model = Category
+def category_detail(request, pk):
+    data = serialize('json', Category.objects.filter(pk=pk))
+    return HttpResponse(data, content_type='application/json')
 
+def category_detail_2(request, pk):
+    data = list(Category.objects.filter(pk=pk).values('active', 'name', 'description'))
+    return JsonResponse(data[0], safe=False)
 
-class SubCategoryDetailView(DetailView):
-    model = SubCategory
-
-
-class ProductDetailView(DetailView):
-    model = Product
-    paginate_by = 20
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['now'] = timezone.now()
-        return context
-
+def category_detail_3(request, pk):
+    cat = get_object_or_404(Category, pk=pk)
+    data = {
+        'active': cat.active,
+        'name': cat.name,
+        'description': cat.description
+    }
+    print(data)
+    return JsonResponse(data)
