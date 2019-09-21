@@ -11,7 +11,10 @@ class ApiSerializerTestCase(TestCase):
     def setUp(self):
         # If we define this as setUpTestData and call self.data.update, we need to
         # restore dict after each call (using tearDown)
+        name = "Two Scoops of Django"
         self.data = {
+            "name": name,
+            "slug": slugify(name),
             "subcategory": 1,
             "description": "Best practices for Django",
             "price": 50,
@@ -19,19 +22,17 @@ class ApiSerializerTestCase(TestCase):
         }
 
     def test_product_serialization_incorrect_missing_field(self):
-        # name and slug fields are required
-        prod_serializer = ProductSerializer(data=self.data)
+        # Delete fields
+        wrong_data = self.data.copy()
+        wrong_data.pop('name')
+        wrong_data.pop('slug')
+
+        prod_serializer = ProductSerializer(data=wrong_data)
         self.assertFalse(prod_serializer.is_valid())
         self.assertIn('name', prod_serializer.errors)
         self.assertIn('slug', prod_serializer.errors)
 
     def test_product_serialization_correct(self):
-        # Update data with required fields
-        name = 'Two Scoops of Django'
-        self.data.update({
-            'name': name,
-            'slug': slugify(name)
-        })
         # Serialize data and check is stored at db
         prod_serializer = ProductSerializer(data=self.data)
         self.assertTrue(prod_serializer.is_valid())
@@ -46,12 +47,6 @@ class ApiSerializerTestCase(TestCase):
         self.assertEqual(p.slug, self.data.get('slug'))
 
     def test_product_partial_serialization_correct(self):
-        # Update and serialize data again
-        name = 'Two Scoops of Django'
-        self.data.update({
-            'name': name,
-            'slug': slugify(name)
-        })
         prod_serializer = ProductSerializer(data=self.data)
         self.assertTrue(prod_serializer.is_valid())
         prod_serializer.save()
@@ -68,3 +63,6 @@ class ApiSerializerTestCase(TestCase):
         self.assertEqual(Product.objects.count(), 1)
         p.refresh_from_db()
         self.assertEqual(p.price, 60)
+
+    def test_deserialization(self):
+        pass
