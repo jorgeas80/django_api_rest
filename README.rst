@@ -64,6 +64,7 @@ Una vez en la base de datos::
     create database drf_api;
     create user "jorge" with password 'jorge';
     grant all privileges on database "drf_api" to "jorge";
+    alter user jorge createdb;
 
 Hecho estto, estaríamos listos para iniciar un proyecto de Django.
 
