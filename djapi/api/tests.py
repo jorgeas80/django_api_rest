@@ -3,7 +3,7 @@ from django.test import TestCase
 
 # Create your tests here.
 class ApiSerializerTestCase(TestCase):
-    fixtures = ['categories', 'subcategories']
+    fixtures = ['api/fixtures/categories.json', 'api/fixtures/subcategories.json']
 
     @classmethod
     def setUpTestData(cls):
