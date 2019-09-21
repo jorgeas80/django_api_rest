@@ -19,11 +19,34 @@ class ApiSerializerTestCase(TestCase):
         }
 
     def test_product_serialization_incorrect_missing_field(self):
+        # name and slug fields are required
         prod_serializer = ProductSerializer(data=self.data)
         self.assertFalse(prod_serializer.is_valid())
         self.assertIn('name', prod_serializer.errors)
+        self.assertIn('slug', prod_serializer.errors)
 
     def test_product_serialization_correct(self):
+        # Update data with required fields
+        name = 'Two Scoops of Django'
+        self.data.update({
+            'name': name,
+            'slug': slugify(name)
+        })
+        # Serialize data and check is stored at db
+        prod_serializer = ProductSerializer(data=self.data)
+        self.assertTrue(prod_serializer.is_valid())
+        prod_serializer.save()
+        self.assertEqual(Product.objects.count(), 1)
+
+        # Check stored data
+        p = Product.objects.first()
+        self.assertEqual(p.name, self.data.get('name'))
+        self.assertEqual(p.description, self.data.get('description'))
+        self.assertEqual(p.price, self.data.get('price'))
+        self.assertEqual(p.slug, self.data.get('slug'))
+
+    def test_product_partial_serialization_correct(self):
+        # Update and serialize data again
         name = 'Two Scoops of Django'
         self.data.update({
             'name': name,
@@ -31,3 +54,17 @@ class ApiSerializerTestCase(TestCase):
         })
         prod_serializer = ProductSerializer(data=self.data)
         self.assertTrue(prod_serializer.is_valid())
+        prod_serializer.save()
+        self.assertEqual(Product.objects.count(), 1)
+
+        p = Product.objects.first()
+
+        # Update by partial serialization
+        prod_serializer = ProductSerializer(instance=p, data={'price': 60}, partial=True)
+        self.assertTrue(prod_serializer.is_valid())
+        prod_serializer.save()
+
+        # Check data is updated
+        self.assertEqual(Product.objects.count(), 1)
+        p.refresh_from_db()
+        self.assertEqual(p.price, 60)
