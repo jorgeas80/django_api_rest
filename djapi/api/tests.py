@@ -80,4 +80,23 @@ class ApiSerializerTestCase(TestCase):
         self.assertEqual(float(prod_serializer.data.get('price')), float(p.price))
         self.assertEqual(prod_serializer.data.get('subcategory'), p.subcategory.id)
         # And so on...
-        
+
+    def test_deserialization_list(self):
+        # Serialize one element
+        prod_serializer = ProductSerializer(data=self.data)
+        self.assertTrue(prod_serializer.is_valid())
+        prod_serializer.save()
+        self.assertEqual(Product.objects.count(), 1)
+
+        # Get all serialized elements
+        l = ProductSerializer(Product.objects.all(), many=True)
+        self.assertEqual(1, len(l.data))
+
+        # Compare deserialized data with data stored in db
+        p = Product.objects.first()
+        data = l.data[0]
+        self.assertEqual(data.get('name'), p.name)
+        self.assertEqual(data.get('slug'), p.slug)
+        self.assertEqual(data.get('description'), p.description)
+        self.assertEqual(float(data.get('price')), float(p.price))
+        self.assertEqual(data.get('subcategory'), p.subcategory.id)
