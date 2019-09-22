@@ -6,6 +6,7 @@ urlpatterns = [
     path('v1/products/<int:pk>', ProductDetailBasic.as_view(), name='product_detail_basic'),
     path('v2/products/', ProductList.as_view(), name='product_list'),
     path('v2/products/<int:pk>', ProductDetail.as_view(), name='product_detail'),
-    path('v2/categories/', CategorySave.as_view(),name='category_save'),
-    path('v2/subcategories/', SubCategorySave.as_view(),name='subcategory_save')
+    path('v2/categories/', CategoryList.as_view(),name='category_list'),
+    path('v2/categories/<int:pk>', CategoryDetail.as_view(),name='category_detail'),
+    path('v2/categories/<int:pk>/subcategories', SubCategoryList.as_view(), name='subcategory_list')
 ]
