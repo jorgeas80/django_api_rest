@@ -32,10 +32,18 @@ class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
-
-class CategorySave(generics.CreateAPIView):
+class CategoryList(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
+class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+ 
+class SubCategoryList(generics.ListCreateAPIView):
+    '''Get subcategories of a given category'''
+    def get_queryset(self):
+        queryset = SubCategory.objects.filter(category_id=self.kwargs['pk'])
+        return queryset
 
-class SubCategorySave(generics.CreateAPIView):
-        serializer_class = SubCategorySerializer
+    serializer_class = SubCategorySerializer
