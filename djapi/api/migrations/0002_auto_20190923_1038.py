@@ -9,7 +9,6 @@ def forwards_func(apps, schema_editor):
     # if we directly import it, it'll be the wrong version
     Category = apps.get_model("api", "Category")
     SubCategory = apps.get_model("api", "SubCategory")
-    Product = apps.get_model("api", "Product")
     db_alias = schema_editor.connection.alias
 
     Category.objects.using(db_alias).bulk_create([
@@ -32,19 +31,6 @@ def forwards_func(apps, schema_editor):
         SubCategory(category=cat3, name="Avanzado", description="Material de aprendizaje avanzado de inglés")
     ])
 
-    subcat1 = SubCategory.objects.get(name="Bases de datos")
-    subcat2 = SubCategory.objects.get(name="DevOps")
-    subcat3 = SubCategory.objects.get(name="Álgebra")
-    subcat4 = SubCategory.objects.get(name="Cálculo")
-
-    Product.objects.using(db_alias).bulk_create([
-        Product(subcategory=subcat1, name='PostgreSQL 10.0', description='PostgreSQL para pros', price=40),
-        Product(subcategory=subcat2, name='Jenkins', description='Petalo con Jenkins', price=45),
-        Product(subcategory=subcat3, name='Algebra para dummies', description='Aprende Álgebra desde cero', price=20),
-        Product(subcategory=subcat3, name='Álgebra para pros', description='Álgebra para jefes', price=30),
-        Product(subcategory=subcat4, name='Calculus II', description='La pesadilla de los estudiantes de ingenierías', price=100)
-    ])
-
 def reverse_func(apps, schema_editor):
     # We get the model from the versioned app registry;
     # if we directly import it, it'll be the wrong version
@@ -53,7 +39,7 @@ def reverse_func(apps, schema_editor):
 
     Category.objects.using(db_alias).filter(name__in=["Informática", "Matemáticas", "Inglés"]).delete()
 
-    # No need to delete subcategories or products, because cascade
+    # No need to delete subcategories, because cascade
 
 class Migration(migrations.Migration):
 
