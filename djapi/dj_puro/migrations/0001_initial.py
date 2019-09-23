@@ -54,7 +54,8 @@ class Migration(migrations.Migration):
                 ('subcategory', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='dj_puro.SubCategory')),
             ],
             options={
-                'abstract': False,
+                'verbose_name': 'Producto',
+                'verbose_name_plural': 'Productos',
             },
         ),
     ]
