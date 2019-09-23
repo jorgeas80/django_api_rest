@@ -79,9 +79,38 @@ Desde línea de comandos, ejecutamos::
 
 Eso creará el esqueleto del proyecto dentro del subdirectorio *djapi*. Es un buen momento para guardar el trabajo en un repositorio.
 
------------------------------------------------
+
+====================
+Configurar usuarios
+====================
+
+Vamos a configurar autenticación y autorización para nuestros usuarios usando DRF. Así que, lo primero que haremos, será añadir
+esto en el fichero *settings.py* al final de INSTALLED_APPS::
+
+    'rest_framework',
+    'rest_framework.authtoken'
+
+Después, añadiremos al final de dicho fichero *settings.py* lo siguiente::
+
+    REST_FRAMEWORK = {
+        'DEFAULT_AUTHENTICATION_CLASSES': (
+            'rest_framework.authentication.TokenAuthentication',
+        ),
+        'DEFAULT_PERMISSION_CLASSES': (
+            'rest_framework.permissions.IsAuthenticated',
+        )
+    }
+
+Y por último, correremos las migraciones::
+
+    python manage.py migrate
+
+Con esto estaríamos listos para empezar a trabajar
+
+
+===============================================
 Almacenamiento del proyecto en repositorio git
------------------------------------------------
+===============================================
 
 Vamos a crear un repositorio vacío y guardar lo creado hasta ahora::
 
@@ -90,6 +119,8 @@ Vamos a crear un repositorio vacío y guardar lo creado hasta ahora::
     git commit -am "Initial commit"
 
 Si estamos usando Github o similar, podemos hacer también *git push* para sincronizarnos con el repositorio central.
+
+
 
 
 .. [#] Si en la máquina está instalado también Python 2, el ejecutable a lanzar será python3
