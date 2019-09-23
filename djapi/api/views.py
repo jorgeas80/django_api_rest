@@ -1,3 +1,4 @@
+from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import generics
@@ -9,6 +10,8 @@ from .serializers import *
 
 # Basic view, not using generics
 class ProductListBasic(APIView):
+    '''Inheriting from APIView is useful if we want full control over
+    the behaviour of our view'''
     def get(self, request):
         prod = Product.objects.all()
         data = ProductSerializer(prod, many=True).data
@@ -23,16 +26,18 @@ class ProductDetailBasic(APIView):
 
 
 # 'Smart' views, using generics
-class ProductList(generics.ListCreateAPIView):
+class ProductViewSet(viewsets.ModelViewSet):
+    '''Inheriting from viewsets.ModelViewSet is useful if we just want
+    to enable full CRUD functionality for a model'''
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
-
-class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
 
 class CategoryList(generics.ListCreateAPIView):
+    '''Inheriting from generics.* allows more control than inheriting from
+    viewsets.ModelViewSet, but less control than inherigin from APIView. 
+    For example, is useful if we just want to implement some CRUD
+    functionalities, but not all of them (ListCreateAPIView --> POST, GET)'''
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
