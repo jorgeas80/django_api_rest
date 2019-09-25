@@ -66,7 +66,7 @@ Una vez en la base de datos::
     grant all privileges on database "drf_api" to "jorge";
     alter user jorge createdb;
 
-Hecho estto, estaríamos listos para iniciar un proyecto de Django.
+Hecho esto, estaríamos listos para iniciar un proyecto de Django.
 
 
 ============================
