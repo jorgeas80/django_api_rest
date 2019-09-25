@@ -1,9 +1,15 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 from .mixins import Timestampable, Publishable, Permalinkable, Activable, Showable
+
+
+class User(AbstractUser):
+    '''Check https://docs.djangoproject.com/en/2.2/topics/auth/customizing/#using-a-custom-user-model-when-starting-a-project'''
+    pass
 
 # Create your models here.
 class Category(Activable, Showable):
