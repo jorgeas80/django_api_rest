@@ -1,1 +1,79 @@
-[{"model": "api.subcategory", "pk": 1, "fields": {"active": true, "name": "Desarrollo web", "description": "Material de aprendizaje sobre desarrollo web", "category": 1}}, {"model": "api.subcategory", "pk": 2, "fields": {"active": true, "name": "Bases de datos", "description": "Material de aprendizaje sobre bases de datos", "category": 1}}, {"model": "api.subcategory", "pk": 3, "fields": {"active": true, "name": "DevOps", "description": "Material de aprendizaje sobre cultura DevOps", "category": 1}}, {"model": "api.subcategory", "pk": 4, "fields": {"active": true, "name": "\u00c1lgebra", "description": "Material de aprendizaje sobre \u00e1lgebra", "category": 2}}, {"model": "api.subcategory", "pk": 5, "fields": {"active": true, "name": "C\u00e1lculo", "description": "Material de aprendizaje sobre c\u00e1lculo", "category": 2}}, {"model": "api.subcategory", "pk": 6, "fields": {"active": true, "name": "B\u00e1sico", "description": "Material de aprendizaje b\u00e1sico de ingl\u00e9s", "category": 3}}, {"model": "api.subcategory", "pk": 7, "fields": {"active": true, "name": "Avanzado", "description": "Material de aprendizaje avanzado de ingl\u00e9s", "category": 3}}]
+[
+{
+  "model": "api.subcategory",
+  "pk": 8,
+  "fields": {
+    "active": true,
+    "name": "Desarrollo web",
+    "description": "Material de aprendizaje sobre desarrollo web",
+    "owner": 2,
+    "category": 4
+  }
+},
+{
+  "model": "api.subcategory",
+  "pk": 9,
+  "fields": {
+    "active": true,
+    "name": "Bases de datos",
+    "description": "Material de aprendizaje sobre bases de datos",
+    "owner": 2,
+    "category": 4
+  }
+},
+{
+  "model": "api.subcategory",
+  "pk": 10,
+  "fields": {
+    "active": true,
+    "name": "DevOps",
+    "description": "Material de aprendizaje sobre cultura DevOps",
+    "owner": 2,
+    "category": 4
+  }
+},
+{
+  "model": "api.subcategory",
+  "pk": 11,
+  "fields": {
+    "active": true,
+    "name": "\u00c1lgebra",
+    "description": "Material de aprendizaje sobre \u00e1lgebra",
+    "owner": 2,
+    "category": 5
+  }
+},
+{
+  "model": "api.subcategory",
+  "pk": 12,
+  "fields": {
+    "active": true,
+    "name": "C\u00e1lculo",
+    "description": "Material de aprendizaje sobre c\u00e1lculo",
+    "owner": 2,
+    "category": 5
+  }
+},
+{
+  "model": "api.subcategory",
+  "pk": 13,
+  "fields": {
+    "active": true,
+    "name": "B\u00e1sico",
+    "description": "Material de aprendizaje b\u00e1sico de ingl\u00e9s",
+    "owner": 2,
+    "category": 6
+  }
+},
+{
+  "model": "api.subcategory",
+  "pk": 14,
+  "fields": {
+    "active": true,
+    "name": "Avanzado",
+    "description": "Material de aprendizaje avanzado de ingl\u00e9s",
+    "owner": 2,
+    "category": 6
+  }
+}
+]

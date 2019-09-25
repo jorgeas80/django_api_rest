@@ -1,0 +1,82 @@
+[
+{
+  "model": "api.product",
+  "pk": 1,
+  "fields": {
+    "slug": "",
+    "publish_date": null,
+    "create_date": "2019-09-25T22:59:07.266Z",
+    "modified_date": "2019-09-25T22:59:07.266Z",
+    "active": true,
+    "name": "PostgreSQL 10.0",
+    "description": "PostgreSQL para pros",
+    "owner": 2,
+    "subcategory": 9,
+    "price": "40.00"
+  }
+},
+{
+  "model": "api.product",
+  "pk": 2,
+  "fields": {
+    "slug": "",
+    "publish_date": null,
+    "create_date": "2019-09-25T22:59:07.266Z",
+    "modified_date": "2019-09-25T22:59:07.267Z",
+    "active": true,
+    "name": "Jenkins",
+    "description": "Petalo con Jenkins",
+    "owner": 2,
+    "subcategory": 10,
+    "price": "45.00"
+  }
+},
+{
+  "model": "api.product",
+  "pk": 3,
+  "fields": {
+    "slug": "",
+    "publish_date": null,
+    "create_date": "2019-09-25T22:59:07.267Z",
+    "modified_date": "2019-09-25T22:59:07.267Z",
+    "active": true,
+    "name": "Algebra para dummies",
+    "description": "Aprende \u00c1lgebra desde cero",
+    "owner": 2,
+    "subcategory": 11,
+    "price": "20.00"
+  }
+},
+{
+  "model": "api.product",
+  "pk": 4,
+  "fields": {
+    "slug": "",
+    "publish_date": null,
+    "create_date": "2019-09-25T22:59:07.267Z",
+    "modified_date": "2019-09-25T22:59:07.267Z",
+    "active": true,
+    "name": "\u00c1lgebra para pros",
+    "description": "\u00c1lgebra para jefes",
+    "owner": 2,
+    "subcategory": 11,
+    "price": "30.00"
+  }
+},
+{
+  "model": "api.product",
+  "pk": 5,
+  "fields": {
+    "slug": "",
+    "publish_date": null,
+    "create_date": "2019-09-25T22:59:07.267Z",
+    "modified_date": "2019-09-25T22:59:07.267Z",
+    "active": true,
+    "name": "Calculus II",
+    "description": "La pesadilla de los estudiantes de ingenier\u00edas",
+    "owner": 2,
+    "subcategory": 12,
+    "price": "100.00"
+  }
+}
+]

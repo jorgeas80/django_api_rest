@@ -1,1 +1,29 @@
-[{"model": "dj_puro.category", "pk": 1, "fields": {"active": true, "name": "Inform\u00e1tica", "description": "Material de aprendizaje sobre inform\u00e1tica"}}, {"model": "dj_puro.category", "pk": 2, "fields": {"active": true, "name": "Matem\u00e1ticas", "description": "Material de aprendizaje sobre matem\u00e1ticas"}}, {"model": "dj_puro.category", "pk": 3, "fields": {"active": true, "name": "Ingl\u00e9s", "description": "Material de aprendizaje sobre ingl\u00e9s"}}]
+[
+{
+  "model": "dj_puro.category",
+  "pk": 1,
+  "fields": {
+    "active": true,
+    "name": "Inform\u00e1tica",
+    "description": "Material de aprendizaje sobre inform\u00e1tica"
+  }
+},
+{
+  "model": "dj_puro.category",
+  "pk": 2,
+  "fields": {
+    "active": true,
+    "name": "Matem\u00e1ticas",
+    "description": "Material de aprendizaje sobre matem\u00e1ticas"
+  }
+},
+{
+  "model": "dj_puro.category",
+  "pk": 3,
+  "fields": {
+    "active": true,
+    "name": "Ingl\u00e9s",
+    "description": "Material de aprendizaje sobre ingl\u00e9s"
+  }
+}
+]

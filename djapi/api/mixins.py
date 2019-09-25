@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.http import JsonResponse
 
@@ -34,6 +35,13 @@ class Activable(models.Model):
 class Showable(models.Model):
     name = models.CharField(max_length=20, unique=True)
     description = models.TextField()
+
+    class Meta:
+        abstract = True
+
+
+class Ownable(models.Model):
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     class Meta:
         abstract = True
