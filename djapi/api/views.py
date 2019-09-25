@@ -1,11 +1,13 @@
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import generics
 from django.contrib.auth import authenticate
 from django.shortcuts import get_object_or_404
 
 from .models import Product
+from .permissions import IsOwner
 from .serializers import *
 
 
@@ -32,6 +34,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     to enable full CRUD functionality for a model'''
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = [IsAuthenticated, IsOwner]
 
 
 class CategoryList(generics.ListCreateAPIView):

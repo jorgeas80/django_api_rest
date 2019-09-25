@@ -4,19 +4,29 @@ from .models import *
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    # Check https://www.django-rest-framework.org/api-guide/validators/#currentuserdefault
+    owner = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
     class Meta:
         model = Product
         fields = '__all__'
 
 class CategorySerializer(serializers.ModelSerializer):
+    owner = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
     class Meta:
         model = Category
         fields= '__all__'
  
 class SubCategorySerializer(serializers.ModelSerializer):
-        class Meta:
-            model = SubCategory
-            fields= '__all__'
+    owner = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
+    class Meta:
+        model = SubCategory
+        fields= '__all__'
 
 
 class UserSerializer(serializers.ModelSerializer):
