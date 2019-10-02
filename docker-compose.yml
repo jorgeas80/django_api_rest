@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  db:
+    image: db
+    build:
+      context: .
+      dockerfile: postgres.df
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+  api:
+    image: api
+    build:
+      context: .
+      dockerfile: django.df
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8008"
+    ports:
+      - 8008:8008
+    depends_on: 
+      - db
+
+
+volumes:
+  postgres:
